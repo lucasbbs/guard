@@ -6,46 +6,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Lock Box</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 </head>
 
-<body class="bg-stone-950 text-stone-200">
-  <header class="bg-stone-900 border-b-stone-800 border-b-2 shadow-b-lg shadow-white">
-    <nav class="mx-auto max-w-screen-lg flex justify-between px-8 py-4">
-      <div class="font-bold text-xl tracking-wide">Book Wise</div>
-      <ul class="flex space-x-4 font-bold">
-        <li><a href="/" class="text-lime-500">Explore</a></li>
-        <?php if (auth()): ?>
-          <li><a href="/my-books" class="hover:underline">My Books</a></li>
-        <?php endif; ?>
-      </ul>
-      <ul>
-        <?php if (auth()): ?>
+<body>
 
-          <li><a href="/logout">Oi, <?= auth()->name ?></a></li>
+  <div class="mx-auto max-w-screen-lg h-screen flex flex-col space-y-6">
+    <?php require base_path('views/partials/_navbar.view.php') ?>
 
-        <?php else: ?>
 
-          <li><a href="/login" class="hover:underline">Login</a></li>
 
-        <?php endif; ?>
-      </ul>
-    </nav>
-  </header>
-  <main class="mx-auto max-w-screen-lg space-y-10">
-    <?php if ($message = flash()->get('message')): ?>
 
-      <div class="border-green-800 bg-green-900 text-green-400 px-4 py-1 rounded-md border-2 text-sm font-bold">
 
-        <?= $message ?>
 
-      </div>
 
-    <?php endif; ?>
-    <?php require "../views/{$view}.view.php" ?>
-  </main>
+
+
+
+
+
+    <?php require base_path('views/partials/_searchbar.view.php') ?>
+    <?php require base_path('views/partials/_message.view.php'); ?>
+
+    <div class="flex flex-grow py-6">
+      <?php require base_path("views/{$view}.view.php"); ?>
+    </div>
 </body>
 
 </html>
