@@ -1,18 +1,17 @@
 <?php
 
-require "../models/Book.php";
-require "../models/User.php";
-require "../models/Vote.php";
-require "../functions.php";
-require "../Database.php";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-require "../Validation.php";
+require "../Core/functions.php";
+
+spl_autoload_register(function ($class) {
+  $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+  require base_path("{$class}.php");
+});
+
 
 session_start();
 
-require "../Flash.php";
-
-
-$config = require '../config.php';
-
-require "../routes.php";
+require base_path("config/routes.php");
