@@ -1,0 +1,61 @@
+:root {
+  --brand: #C4F120;
+  --error: #E61E32;
+  --blur-md: 12px;
+  --background-secondary: #1b1b1b;
+  --border-primary: #303030;
+  --placeholder-color: #777777;
+  --disabled-color: #777777;
+}
+
+.background-guest {
+  background-image: url('images/background.svg');
+  background-size: cover;
+  background-position: center;
+}
+
+html {
+  background-color: #000000;
+}
+
+.login-background-blur {
+  backdrop-filter: blur(var(--blur-md));
+}
+
+.btn-login {
+  background-color: var(--brand);
+  color: #000000;
+}
+
+.background-guest-action {
+  background-color: var(--background-secondary);
+}
+
+.brand {
+  color: var(--brand);
+}
+
+.bg-brand {
+  background-color: var(--brand);
+}
+
+.guard-input {
+  border: 1px solid var(--border-primary);
+  background-color: var(--background-secondary);
+  color: #ffffff;
+}
+
+.guard-input::placeholder {
+  color: var(--placeholder-color);
+}
+
+a {
+  color: #000000;
+}
+
+/* Apply disabled styles */
+a:disabled {
+  color: var(--disabled-color) !important;
+  pointer-events: none;
+  opacity: 1;
+}
