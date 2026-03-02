@@ -1,74 +1,56 @@
-<div class="mt-6 grid grid-cols-2 gap-2">
-  <div class="border border-stone-700 rounded p-4">
-    <h1 class="border-b border-stone-700 text-stone-400 font-bold px-4 py-2">
-      Login
-    </h1>
-    <form class="p-4 space-y-4" method="post" action="/login">
+<?php $validations = flash()->get('validations'); ?>
+<div class="grid grid-cols-1 sm:grid-cols-2">
 
-      <?php if ($validations = flash()->get('validations_login')): ?>
-        <div class="border-red-800 bg-red-900 text-red-400 px-4 py-1 rounded-md border-2 text-sm font-bold">
-          <ul>
-            <li>Please fix the following errors:</li>
-            <?php foreach ($validations as $validation): ?>
-              <li><?= $validation ?></li>
-            <?php endforeach; ?>
-          </ul>
+  <div class="hero min-h-[150px] sm:min-h-screen flex pl-0 sm:pl-10 md:pl-20 lg:pl-40 login-background-blur place-items-start pt-20">
+    <div class="hero-content -mt-20 text-white">
+      <div>
+        <p class="py-2 text-xl">Welcome to</p>
+        <div class="text-4xl font-bold flex gap-1.5"> <img src="./images/guard_logo.svg" alt="">
+          <h1>Guard</h1>
         </div>
-      <?php endif; ?>
-
-      <div class="flex flex-col">
-        <label class="text-stone-400 ml-2 mb-1" for="email-id">Email</label>
-        <input id="email-id" type="email" value="<?= htmlspecialchars($_GET['email '] ?? '') ?>" name="email"
-          class="border-2 rounded-md border-stone-600 bg-stone-900 focus:outline-none px-2 py-1 w-full"
-          placeholder="Email" name="email" required />
-        <label class="text-stone-400 ml-2 mb-1" for="password-id">Password</label>
-        <input id="password-id" type="password" value="<?= htmlspecialchars($_GET['password '] ?? '') ?>"
-          name="password" class="border-2 rounded-md border-stone-600 bg-stone-900 focus:outline-none px-2 py-1 w-full"
-          placeholder="Password" name="password" required />
+        <p class="py-2 pb-4 text-xl">where you keep <span class="italic">everything</span> safe</p>
       </div>
-      <button type="submit"
-        class="border-stone-800 bg-stone-900 text-stone-400 px-4 py-2 rounded-md border border-2 hover:bg-stone-800">Login</button>
-    </form>
+    </div>
   </div>
-  <div>
-    <h1 class="border-b border-stone-700 text-stone-400 font-bold px-4 py-2">
-      Register
-    </h1>
-    <form class="p-4 space-y-4" method="post" action="/register">
 
-      <?php if ($validations = flash()->get('validations_register')): ?>
-        <div class="border-red-800 bg-red-900 text-red-400 px-4 py-1 rounded-md border-2 text-sm font-bold">
-          <ul>
-            <li>Please fix the following errors:</li>
-            <?php foreach ($validations as $validation): ?>
-              <li><?= $validation ?></li>
-            <?php endforeach; ?>
-          </ul>
+  <div class="bg-white hero mr-40 min-h-screen text-white background-guest-action">
+    <div class="hero-content -mt-20">
+      <form method="POST" action="/login">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title text-xl">Sign in to your account</div>
+            <?php require base_path('views/partials/_message.view.php'); ?>
+            <label class="form-control">
+              <div class="label">
+                <span class="label-text text-white">Email</span>
+              </div>
+
+              <input type="text" name="email" class="input w-full max-w-xs guard-input" placeholder="Enter your email" value="<?= old('email') ?>" />
+
+              <?php if (isset($validations['email'])): ?>
+                <div class="mt-1 text-xs text-error"><?= $validations['email'][0] ?></div>
+              <?php endif; ?>
+            </label>
+
+            <label class="form-control">
+              <div class="label">
+                <span class="label-text text-white">Password</span>
+              </div>
+
+              <input type="password" name="password" class="input w-full max-w-xs guard-input" placeholder="Enter your password" />
+              <?php if (isset($validations['password'])): ?>
+                <div class="mt-1 text-xs text-error"><?= $validations['password'][0] ?></div>
+              <?php endif; ?>
+            </label>
+
+            <div class="card-actions flex flex-col">
+              <button class="btn btn-login btn-block w-fit self-end">Access account</button>
+              <div class="flex gap-2"><span class="text-white">Don't have an account?</span> <a href="/register" class="brand">Create account</a></div>
+            </div>
+          </div>
         </div>
-      <?php endif; ?>
-      <div class="flex flex-col">
-        <label class="text-stone-400 ml-2 mb-1" for="name-id">Name</label>
-        <input id="name-id" type="text" value="<?= htmlspecialchars($_GET['name'] ?? '') ?>" name="name"
-          class="border-2 rounded-md border-stone-600 bg-stone-900 focus:outline-none px-2 py-1 w-full"
-          placeholder="Name" required />
-        <label class="text-stone-400 ml-2 mb-1" for="email-id">Email</label>
-        <input id="email-id" type="email" value="<?= htmlspecialchars($_GET['email'] ?? '') ?>" name="email"
-          class="border-2 rounded-md border-stone-600 bg-stone-900 focus:outline-none px-2 py-1 w-full"
-          placeholder="Email" required />
-        <label class="text-stone-400 ml-2 mb-1" for="password-id">Password</label>
-        <input id="password-id" type="password" value="<?= htmlspecialchars($_GET['password'] ?? '') ?>"
-          name="password" class="border-2 rounded-md border-stone-600 bg-stone-900 focus:outline-none px-2 py-1 w-full"
-          placeholder="Password" required />
-        <label class="text-stone-400 ml-2 mb-1" for="password_confirmation-id">Confirm your Password</label>
-        <input id="password_confirmation-id" type="password" value="<?= htmlspecialchars($_GET['password_confirmation'] ?? '') ?>"
-          name="password_confirmation" class="border-2 rounded-md border-stone-600 bg-stone-900 focus:outline-none px-2 py-1 w-full"
-          placeholder="Password" required />
-      </div>
-      <button type="reset"
-        class="border-stone-800 bg-stone-900 text-stone-400 px-4 py-2 rounded-md border border-2 hover:bg-stone-800">Cancel</button>
-      <button type="submit"
-        class="border-stone-800 bg-stone-900 text-stone-400 px-4 py-2 rounded-md border border-2 hover:bg-stone-800">Register</button>
-    </form>
+      </form>
+    </div>
   </div>
 
 </div>
