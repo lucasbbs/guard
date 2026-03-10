@@ -1,6 +1,7 @@
 :root {
   --brand: #C4F120;
   --error: #E61E32;
+  --body: #E2E2E2;
   --blur-md: 12px;
   --background-secondary: #1b1b1b;
   --border-primary: #303030;
@@ -31,12 +32,30 @@ html {
   background-color: var(--background-secondary);
 }
 
+.icon-only {
+  background-color: var(--background-secondary) !important;
+  border: none !important;
+  text-decoration: none;
+  padding-inline: 8px;
+}
+
 .brand {
   color: var(--brand);
 }
 
+.text-body {
+  color: var(--body);
+}
+.text-muted {
+  color: var(--disabled-color);
+}
+
 .bg-brand {
   background-color: var(--brand);
+}
+.bg-brand-secondary {
+  background-color: white !important;
+  color: black;
 }
 
 .guard-input {
@@ -59,3 +78,7 @@ a:disabled {
   pointer-events: none;
   opacity: 1;
 }
+
+/* dialog.modal .modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+} */

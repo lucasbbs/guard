@@ -21,7 +21,7 @@ $buildUrl = function (?string $letter) use ($baseUrl, $search): string {
 
 ?>
 
-<nav aria-label="Alphabet" class="flex flex-col items-center">
+<nav aria-label="Alphabet" class="flex flex-col items-center px-4">
   <div class="rounded-3xl bg-brand px-2 py-3 flex flex-col items-center gap-1 select-none">
     <a
       href="<?= $buildUrl(null) ?>"

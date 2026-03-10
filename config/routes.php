@@ -5,6 +5,7 @@ use App\Controllers\LoginController;
 use App\Controllers\LogoutController;
 use App\Controllers\Contacts;
 use App\Controllers\RegisterController;
+use App\Controllers\SettingsController;
 use App\Middlewares\AuthMiddleware;
 use App\Middlewares\GuestMiddleware;
 use Core\Route;
@@ -29,6 +30,8 @@ use Core\Route;
     ->get('/confirm', [Contacts\VisualizeController::class, 'confirm'], AuthMiddleware::class)
     ->post('/show', [Contacts\VisualizeController::class, 'showAll'], AuthMiddleware::class)
     ->post('/show-single', [Contacts\VisualizeController::class, 'showSingle'], AuthMiddleware::class)
+    ->get('/settings', [SettingsController::class, 'index'], AuthMiddleware::class)
+    ->post('/settings', [SettingsController::class, 'settings'], AuthMiddleware::class)
     ->get('/hide', [Contacts\VisualizeController::class, 'hide'], AuthMiddleware::class)
 
     ->run();

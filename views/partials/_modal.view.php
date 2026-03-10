@@ -25,7 +25,7 @@ if (is_callable($actions)) {
   </div>
 <?php endif; ?>
 
-<dialog id="<?= $id ?>" class="modal">
+<dialog id="<?= $id ?>" class="modal bg-black/90">
   <div class="modal-box">
     <?php if (is_string($title) && $title !== ''): ?>
       <h3 class="text-lg font-bold"><?= $title ?></h3>
