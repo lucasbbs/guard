@@ -27,7 +27,8 @@ use Core\Route;
     ->delete('/contacts', Contacts\DeleteController::class, AuthMiddleware::class)
 
     ->get('/confirm', [Contacts\VisualizeController::class, 'confirm'], AuthMiddleware::class)
-    ->post('/show', [Contacts\VisualizeController::class, 'show'], AuthMiddleware::class)
+    ->post('/show', [Contacts\VisualizeController::class, 'showAll'], AuthMiddleware::class)
+    ->post('/show-single', [Contacts\VisualizeController::class, 'showSingle'], AuthMiddleware::class)
     ->get('/hide', [Contacts\VisualizeController::class, 'hide'], AuthMiddleware::class)
 
     ->run();

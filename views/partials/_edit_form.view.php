@@ -22,7 +22,7 @@ $validations = is_array($validations ?? null) ? $validations : [];
   <fieldset class="fieldset">
     <legend class="fieldset-legend">Phone number</legend>
     <input
-      <?php if (! session()->get('show')): ?>
+      <?php if (! $selectedContact->isVisible()): ?>
       disabled
       <?php endif; ?>
       type="text"
@@ -39,7 +39,7 @@ $validations = is_array($validations ?? null) ? $validations : [];
   <fieldset class="fieldset">
     <legend class="fieldset-legend">Email</legend>
     <input
-      <?php if (! session()->get('show')): ?>
+      <?php if (! $selectedContact->isVisible()): ?>
       disabled
       <?php endif; ?>
       type="email"
@@ -56,7 +56,7 @@ $validations = is_array($validations ?? null) ? $validations : [];
   <fieldset class="fieldset">
     <legend class="fieldset-legend">Address</legend>
     <textarea
-      <?php if (! session()->get('show')): ?>
+      <?php if (! $selectedContact->isVisible()): ?>
       disabled
       <?php endif; ?>
       class="textarea h-24 w-full"

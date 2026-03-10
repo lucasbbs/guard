@@ -13,6 +13,7 @@ class Contact
   public $picture;
   public $email;
   public $address;
+  public $locked;
   public $created_at;
   public $updated_at;
 
@@ -113,9 +114,37 @@ class Contact
     );
   }
 
-  public function phone()
+  public static function isVisibleId($id): bool
   {
     if (session()->get('show')) {
+      return true;
+    }
+
+    $visibleContacts = session()->get('visible_contacts') ?? [];
+    if (! is_array($visibleContacts)) {
+      return false;
+    }
+
+    if ($id === null || $id === '') {
+      return false;
+    }
+
+    return ($visibleContacts[$id] ?? false) === true;
+  }
+
+  public function isVisible(): bool
+  {
+    return self::isVisibleId($this->id ?? null);
+  }
+
+  public function isLocked(): bool
+  {
+    return ! $this->isVisible();
+  }
+
+  public function phone()
+  {
+    if ($this->isVisible()) {
       return decrypt($this->phone);
     }
 
@@ -124,7 +153,7 @@ class Contact
 
   public function email()
   {
-    if (session()->get('show')) {
+    if ($this->isVisible()) {
       return decrypt($this->email);
     }
 
@@ -133,7 +162,7 @@ class Contact
 
   public function address()
   {
-    if (session()->get('show')) {
+    if ($this->isVisible()) {
       return decrypt($this->address);
     }
 
