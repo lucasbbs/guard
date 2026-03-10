@@ -4,7 +4,7 @@ namespace Core;
 
 class Upload
 {
-  public static function storeImage($file, $directory = 'images')
+  public static function storeImage($file, $directory = 'images/uploads')
   {
     if (! is_array($file)) {
       return null;
@@ -59,4 +59,3 @@ class Upload
     return $relativePath;
   }
 }
-
